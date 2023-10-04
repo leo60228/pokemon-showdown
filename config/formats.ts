@@ -19,6 +19,20 @@ The column value will be ignored for repeat sections.
 
 export const Formats: FormatList = [
 	{
+		section: "National Dex",
+	},
+	{
+		name: "[Gen 9] Arceus Metronome Doubles Battle",
+		desc: "A team of 6 Arceus with randomly generated Plates using the move Metronome in a Doubles format.",
+
+		gameType: 'doubles',
+		mod: 'gen9',
+		team: 'randomArceus',
+		ruleset: ['Standard NatDex', 'Team Preview'],
+	},
+
+
+	{
 		section: "Draft",
 		column: 1,
 	},

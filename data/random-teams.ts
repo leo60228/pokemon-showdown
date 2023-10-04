@@ -2422,6 +2422,56 @@ export class RandomTeams {
 
 		return team;
 	}
+
+	randomArceusTeam() {
+		const natures = Object.keys(this.dex.data.Natures);
+		const arceus = ['arceus'].concat(this.dex.species.get('arceus').otherFormes || []);
+		const team = [];
+		for (let i = 0; i < 6; i++) {
+			const species = this.dex.species.get(this.sampleNoReplace(arceus));
+
+			const item = species.requiredItems ? species.requiredItems[0] : 'Normalium Z';
+
+			// Random EVs
+			const evs: StatsTable = {hp: 0, atk: 0, def: 0, spa: 0, spd: 0, spe: 0};
+			const s: StatID[] = ["hp", "atk", "def", "spa", "spd", "spe"];
+			let evpool = 510;
+			do {
+				const x = s[this.random(s.length)];
+				const y = this.random(Math.min(256 - evs[x], evpool + 1));
+				evs[x] += y;
+				evpool -= y;
+			} while (evpool > 0);
+
+			// Random IVs
+			const ivs = {hp: this.random(32), atk: this.random(32), def: this.random(32), spa: this.random(32), spd: this.random(32), spe: this.random(32)};
+
+			// Random nature
+			const nature = natures[this.random(natures.length)];
+
+			// Random happiness
+			const happiness = this.random(256);
+
+			// Random shininess
+			const shiny = !this.random(1024);
+
+			team.push({
+				name: species.baseSpecies,
+				species: species.name,
+				gender: species.gender,
+				item: item,
+				ability: 'Multitype',
+				moves: ['Metronome'],
+				evs: evs,
+				ivs: ivs,
+				nature: nature,
+				level: 100,
+				happiness: happiness,
+				shiny: shiny,
+			});
+		}
+		return team;
+	}
 }
 
 export default RandomTeams;
