@@ -28,7 +28,7 @@ export const Formats: FormatList = [
 		gameType: 'doubles',
 		mod: 'gen9',
 		team: 'randomArceus',
-		ruleset: ['Standard NatDex', 'Team Preview'],
+		ruleset: ['Standard NatDex'],
 	},
 
 
