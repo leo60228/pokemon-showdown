@@ -413,7 +413,7 @@ export class ServerStream extends Streams.ObjectReadWriteStream<string> {
 		// this is global so it can be hotpatched if necessary
 		server.on('connection', connection => this.onConnection(connection));
 		server.installHandlers(this.server, {});
-		this.server.listen(8000, config.bindaddress);
+		this.server.listen(config.port, config.bindaddress);
 		console.log(`Worker ${PM.workerid} now listening on ${config.bindaddress}:${config.port}`);
 
 		if (this.serverSsl) {
